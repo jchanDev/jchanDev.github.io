@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  background-color: #E9E9E9;
 }
 
 header {
@@ -28,4 +29,13 @@ footer {
   text-align: center;
   padding: 1rem;
   background: #f4f4f4;
+}
+
+#vader {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.5rem;
+  color: #6b60a8;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
 }
