@@ -39,3 +39,13 @@ footer {
   text-align: center;
   line-height: 1.5;
 }
+
+#vader::after {
+  content: "|";
+  display: inline-block;
+  animation: blink 0.8s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

@@ -50,9 +50,19 @@ function Typer(element, options, scenes) {
   return { play: play, stop: stop };
 }
 
+// window.onload = function() {
+//   var vader = document.getElementById('vader');
+//   Typer(vader, { erase: 60, type: 80, break: 10000 }, [
+//     "Hi! I'm Julia. I'm currently working in the role Engineer, Cloud Operations & Support at eGain."
+//   ]);
+// };
 window.onload = function() {
   var vader = document.getElementById('vader');
-  Typer(vader, { erase: 60, type: 80, break: 10000 }, [
-    "Hi! I'm Julia. I'm currently working in the role Engineer, Cloud Operations & Support at eGain."
+  Typer(vader, { erase: 60, type: 80, break: 2000 }, [
+    "Hi! I'm Julia.",
+    "Engineer, Cloud Operations & Support at eGain.",
+    "Welcome to my portfolio!"
   ]);
 };
+
+
