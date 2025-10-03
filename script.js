@@ -65,4 +65,22 @@ window.onload = function() {
   ]);
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdownToggle = document.querySelector(".dropdown-toggle");
+  const dropdown = document.querySelector(".dropdown");
+
+  dropdownToggle.addEventListener("click", (e) => {
+    e.preventDefault(); // prevent page jump
+    dropdown.classList.toggle("open");
+  });
+
+  // Optional: close dropdown if you click outside
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+    }
+  });
+});
+
+
 

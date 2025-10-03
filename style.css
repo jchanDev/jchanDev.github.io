@@ -11,12 +11,14 @@ header {
   color: #fff;
   padding: 1rem;
   text-align: center;
+  padding-top: 1rem
 }
 
 header nav a {
   color: #fff;
   margin: 0 10px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 section {
@@ -29,6 +31,65 @@ footer {
   text-align: center;
   padding: 1rem;
   background: #f4f4f4;
+}
+
+/* Dropdown container */
+nav .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide dropdown links by default */
+nav .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* dropdown background */
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Dropdown links */
+nav .dropdown-content li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+/* Hover effect for links */
+nav .dropdown-content li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Caret styling */
+nav .dropdown a {
+  display: inline-flex;
+  align-items: center; /* vertically align text + caret */
+}
+/* Caret (CSS chevron) */
+nav .caret {
+  display: inline-block;
+  margin-left: 6px;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);   /* points down */
+  transition: transform 0.3s ease;
+}
+
+/* Rotate chevron up when open */
+nav .dropdown.open .caret {
+  transform: rotate(-135deg); /* points up */
+}
+
+/* Show dropdown when "open" class is applied */
+nav .dropdown.open .dropdown-content {
+  display: block;
 }
 
 #vader {

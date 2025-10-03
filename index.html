@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
-    <h1>Welcome!</h1>
-    <p id="vader"></p> 
+    <h1>Welcome! Website in progress. Visit my current site<li><a href="https://sites.google.com/view/julia-chan/home">here!</a></li></h1>
+    <p id="vader"></p>
     <nav>
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
+
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle">
+          Projects <span class="caret"></span>
+        </a>
+        <ul class="dropdown-content">
+          <li><a href="project1.html">Project 1</a></li>
+          <li><a href="project2.html">Project 2</a></li>
+          <li><a href="project3.html">Project 3</a></li>
+        </ul>
+      </div>
+
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -20,27 +33,40 @@
   <main>
     <section id="about">
       <h2>About Me</h2>
-      <p>A short bio about you...</p>
+      <p>I’m a Computer Engineering graduate from UC Santa Barbara, currently working as an Engineer in Cloud Operations
+        & Support at eGain. I’m passionate about cloud computing and software engineering, and I enjoy applying my
+        creativity to solve complex technical problems. Outside of work, I explore hobbies like crocheting, 3D origami,
+        and baking which inspire me to bring fresh perspectives and innovative solutions to my projects</p>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
       <ul>
-        <li><a href="#">Project 1</a> – short description</li>
-        <li><a href="#">Project 2</a> – short description</li>
+        <li><a href="project1.html">On-Premise to Cloud Transfer: Humans mating habits research Model
+          </a>: Streamlined research processes by migrating on-premise models to AWS by utilizizing Cloudformation,
+          Lambda, and EC2.
+        </li>
+        <li><a href="project2.html">Infrastructure setup for hydro-ecological simulation
+          </a>: Utilized AWS ParallelCluster with horizontal scaling and optimized SLURM configurations to
+          significantly reduce the runtime of an R script executed within a Singularity container for UCSB researchers.
+        </li>
+        <li><a href="project3.html">Infrastructure setup for hydro-ecological simulation
+          </a>: SproutSense is a smart agriculture platform for real-time plant health monitoring and AI-powered irrigation recommendations using environmental sensor data.
+        </li>
       </ul>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>Email: <a href="mailto:jchan11323@gmail.com">jchan11323@gmail.com</a></p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 [Your Name]. All rights reserved.</p>
+    <p>© 2025 Julia Chan. All rights reserved.</p>
   </footer>
 
   <script src="script.js" defer></script>
 </body>
+
 </html>
