@@ -5,6 +5,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: "/jchanDev.github.io/",
   resolve: {
     extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
