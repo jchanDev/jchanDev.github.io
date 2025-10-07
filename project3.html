@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>PROJECT_THREE — Julia</title>
+    <title>Sproutsense</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -17,7 +17,7 @@
                 <span class="yellow"></span>
                 <span class="green"></span>
             </div>
-            <div class="title">~/projects/project_three</div>
+            <div class="title">~/projects/Sproutsense</div>
             <button id="toggle-theme">🌙</button>
         </div>
 
@@ -27,41 +27,62 @@
             <a href="index.html" class="back">← cd ..</a>
 
             <!-- Project Title -->
-            <h1 class="project-title">PROJECT_THREE.exe</h1>
+            <h1 class="project-title">Sproutsense.exe</h1>
             <div class="bar"></div>
 
             <!-- Description Panel -->
             <section class="panel">
                 <div class="label">&gt; Description:</div>
-                <p>This is a detailed description of the first project. Explain the problem it solves, the tech
-                    used, and what makes it special.</p>
+                <p>SproutSense is a smart agriculture platform for real-time plant health monitoring and AI-powered
+                    irrigation recommendations using environmental sensor data.</p>
             </section>
 
+            <section class="panel">
+                <div class="label">&gt; Achievements:</div>
+                <ul class="features">
+                    <li>1st Place — ITC 2025</li>
+                    <li>2nd Place — UCSB CE Capstone 2025</li>
+                </ul>
+            </section>
             <!-- Technologies Panel -->
             <section class="panel">
                 <div class="label">&gt; Technologies:</div>
                 <div class="tags">
                     <span>React</span>
-                    <span>TypeScript</span>
+                    <span>AWS</span>
                     <span>Tailwind</span>
-                    <span>Node.js</span>
+                    <span>Docker</span>
+                    <span>Scikit-learn</span>
                 </div>
             </section>
 
             <!-- Features Panel -->
             <section class="panel">
-                <div class="label">&gt; Features:</div>
+                <div class="label">&gt; How it works:</div>
                 <ul class="features">
-                    <li>Feature one - something cool</li>
-                    <li>Feature two</li>
-                    <li>Feature three</li>
+                    <li>Network of smart environmental sensors sends data to our website. Done through MQTT
+                        commmunication between Base Station and Server</li>
+                    <li>Databse is PostgreSQL and backend is Python with FastAPI</li>
+                    <li>Trained model in google Colab and integrated model into website</li>
+                    <li>Build many pages and views with React</li>
                 </ul>
             </section>
 
-            <!-- Actions -->
+            <section class="panel">
+                <div class="label">&gt; Slideshow:</div>
+                <div class="slideshow-wrapper">
+                    <iframe
+                        src="https://docs.google.com/presentation/d/1l3LcrPgQmQztnF1cMWm0iAOGqdpEN_S9Kb_itBYqlH8/embed?start=false&loop=false"
+                        frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
             <div class="actions">
-                <a href="#" class="btn primary">View Code</a>
-                <a href="#" class="btn">Live Demo</a>
+                <a href="https://github.com/BK1031/SproutSense" class="btn primary" target="_blank"
+                    rel="noopener noreferrer">View Github</a>
+                <a href="https://sproutsense.netlify.app/" class="btn" target="_blank" rel="noopener noreferrer">Visit
+                    Sproutsense!</a>
             </div>
         </div>
     </div>
