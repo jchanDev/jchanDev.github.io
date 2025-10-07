@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>PROJECT_TWO — Julia</title>
+    <title>Infrastructure setup for hydro-ecological simulation</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -17,7 +17,7 @@
                 <span class="yellow"></span>
                 <span class="green"></span>
             </div>
-            <div class="title">~/projects/project_two</div>
+            <div class="title">~/projects/Infra_setup_hydro_sim</div>
             <button id="toggle-theme">🌙</button>
         </div>
 
@@ -27,41 +27,56 @@
             <a href="index.html" class="back">← cd ..</a>
 
             <!-- Project Title -->
-            <h1 class="project-title">PROJECT_TWO.exe</h1>
+            <h1 class="project-title">Infrastructure_setup_for_hydro-ecological_simulation.exe</h1>
             <div class="bar"></div>
 
             <!-- Description Panel -->
             <section class="panel">
                 <div class="label">&gt; Description:</div>
-                <p>This is a detailed description of the first project. Explain the problem it solves, the tech
-                    used, and what makes it special.</p>
+                <p>Utilized AWS ParallelCluster with horizontal scaling and optimized SLURM configurations to
+                    significantly
+                    reduce the runtime of an R script executed within a Singularity container for UCSB researchers.</p>
             </section>
 
             <!-- Technologies Panel -->
             <section class="panel">
                 <div class="label">&gt; Technologies:</div>
                 <div class="tags">
-                    <span>React</span>
-                    <span>TypeScript</span>
-                    <span>Tailwind</span>
-                    <span>Node.js</span>
+                    <span>ParallelCluster</span>
+                    <span>EC2</span>
+                    <span>S3</span>
+                    <span>Bash</span>
+                    <span>SLURM</span>
                 </div>
             </section>
 
             <!-- Features Panel -->
             <section class="panel">
-                <div class="label">&gt; Features:</div>
+                <div class="label">&gt; How it works:</div>
                 <ul class="features">
-                    <li>Feature one - something cool</li>
-                    <li>Feature two</li>
-                    <li>Feature three</li>
+                    <li>Setup ParallelCluster</li>
+                    <li>Create clusters and download scripts and inputs from your S3 bucket</li>
+                    <li>Clusters run our startup scripts and then run simulationt with given inputs</li>
+                    <li>Run script I made to consolidate files from all parallel runs in one place and concatenate them.
+                        The script also uploads output to the S3 bucket</li>
                 </ul>
             </section>
 
-            <!-- Actions -->
+            <section class="panel">
+                <div class="label">&gt; Slideshow:</div>
+                <div class="slideshow-wrapper">
+                    <iframe
+                        src="https://docs.google.com/presentation/d/1lIdFIkV50hqLHUhcgUz6KwGfhMNKCEd7EvTscwnX-ZY/embed?start=false&loop=false"
+                        frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
             <div class="actions">
-                <a href="#" class="btn primary">View Code</a>
-                <a href="#" class="btn">Live Demo</a>
+                <a href="https://docs.google.com/document/d/1Vj01AfhNBDBuQEw_xoeylrtGsXwnXhBkOQEe7t23Tm4/edit?tab=t.0#heading=h.rds5mo41rdtd"
+                    class="btn primary" target="_blank" rel="noopener noreferrer">View Documentation</a>
+                <a href="https://docs.google.com/spreadsheets/d/1BSdONUcn6s1hF93TsOUPnrxGuzTbdEhD88MYMRkd5pY/edit?gid=0#gid=0"
+                    class="btn" target="_blank" rel="noopener noreferrer">View Cost Analysis</a>
             </div>
         </div>
     </div>
