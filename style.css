@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+body {
+    font-family: 'Fira Code', monospace;
+    background: linear-gradient(135deg, #f3e7ff, #ffe6f7);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.5s, color 0.5s;
+}
+
+.terminal {
+    width: 750px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #e3ccff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(153, 0, 255, 0.1);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.terminal-header {
+    background: linear-gradient(to right, #d26eff, #ff80bf);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.terminal-header .buttons span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: #ff5f56;
+}
+
+.yellow {
+    background-color: #ffbd2e;
+}
+
+.green {
+    background-color: #27c93f;
+}
+
+#toggle-theme {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.terminal-body {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #5c2a8a;
+}
+
+.typing-line {
+    border-right: 2px solid #c87bff;
+    white-space: pre;
+    overflow: hidden;
+    width: fit-content;
+    animation: blink 0.8s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Light mode project cards */
+.project-card {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.8); /* light card */
+    color: #5c2a8a; /* matches terminal text */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 10px rgba(153, 0, 255, 0.1);
+}
+
+.project-card:hover {
+    background: rgba(236, 232, 232, 0.95);
+    transform: translateY(-2px);
+}
+
+.project-card .icon {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.project-card .name {
+    font-weight: bold;
+}
+
+.project-card .desc {
+    font-size: 0.9em;
+    color: #7a4ca0; /* slightly lighter for readability */
+}
+
+.back {
+    text-decoration: none; /* removes underline */
+    color: #5c2a8a; /* light mode text color */
+    font-family: 'Fira Code', monospace;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.back:hover {
+    color: #7a4ca0; /* subtle hover effect */
+}
+
+/* ---------------- Dark Mode ---------------- */
+/* Dark mode body */
+body.dark {
+    background: #1b0b2a; /* very dark purple/indigo */
+    color: #eee; /* readable text */
+}
+
+/* Dark mode terminal */
+body.dark .terminal {
+    background: #2a153f; /* slightly lighter than body */
+    border-color: #553366; /* subtle border */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* soft shadow */
+}
+
+/* Dark mode terminal body */
+body.dark .terminal-body {
+    background: #3a204f; /* lighter than terminal */
+    color: #eee; /* readable text */
+}
+
+/* Dark mode typing cursor */
+body.dark .typing-line {
+    border-right: 2px solid #cfaeff; /* soft but visible */
+}
+
+/* Dark mode project cards */
+body.dark .project-card {
+    background: #4a2a60; /* slightly lighter than terminal body */
+    color: #f0e6ff; /* readable text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* subtle shadow */
+}
+
+body.dark .project-card:hover {
+    background: #5b3875; /* hover slightly lighter */
+}
+
+body.dark .project-card .desc {
+    color: #d8c4f0; /* soft accent text */
+}
+
+body.dark .back {
+    color: #f8eaff;
+}
+
+body.dark .back:hover {
+    color: #e0c0ff;
+}

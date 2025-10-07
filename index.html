@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>~/home</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="buttons">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <div class="title">~/home</div>
+            <button id="toggle-theme">🌙</button>
+        </div>
+
+        <div class="terminal-body">
+            <p class="typing-line" data-text="> Hi! I'm Julia"></p>
+            <p class="typing-line" data-text="> Engineer, cloud operations & support @ eGain"></p>
+            <p class="typing-line" data-text="> Welcome to my portfolio!"></p>
+
+            <div class="projects">
+                <div class="project-card" onclick="location.href='project1.html'">
+                    <div class="icon">📁</div>
+                    <div>
+                        <div class="name">project_one/</div>
+                        <div class="desc">My first amazing project</div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="location.href='project2.html'">
+                    <div class="icon">📁</div>
+                    <div>
+                        <div class="name">project_two/</div>
+                        <div class="desc">Another cool creation</div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="location.href='project3.html'">
+                    <div class="icon">📁</div>
+                    <div>
+                        <div class="name">project_three/</div>
+                        <div class="desc">Something special</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="about" class="about">
+                <div class="about-title">About Me:</div>
+                <p>
+                    I’m a Computer Engineering graduate from UC Santa Barbara, currently working as an Engineer in Cloud Operations & Support at eGain. 
+                    I’m passionate about cloud computing and software engineering, and I enjoy applying my creativity to solve complex technical problems. 
+                    Outside of work, I explore hobbies like crocheting, 3D origami, and baking which inspire me to bring fresh perspectives and innovative solutions to my projects.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
