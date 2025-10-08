@@ -182,7 +182,7 @@ body {
     font-family: monospace;
     white-space: pre-wrap;
     /* wrap text naturally */
-    font-size: clamp(1rem, 2vw, 2rem);
+    font-size: clamp(1rem, 1vw, 2rem);
     color: var(--text-color, #5c2a8a);
     margin-top: 1rem;
     text-align: left;
@@ -190,7 +190,7 @@ body {
 
 /* Cat speech bubble/text */
 .cat-speech {
-    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    font-size: 0.85rem; /* fixed size */
     display: inline-block;
     color: var(--text-color, #5c2a8a);
     max-width: 95%;
@@ -199,6 +199,11 @@ body {
     margin-top: 0.25rem;
 }
 
+@media (max-width: 480px) {
+    .cat-speech {
+        font-size: 0.75rem; /* slightly smaller on small screens */
+    }
+}
 /* Fade animations */
 .ascii-cat.fade-in {
     opacity: 0;

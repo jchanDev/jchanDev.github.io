@@ -229,5 +229,3 @@ document.addEventListener("DOMContentLoaded", () => {
     el.innerHTML = el.textContent.replaceAll("_", "_\u200B");
   });
 });
-
-
