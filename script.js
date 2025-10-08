@@ -81,16 +81,16 @@ function showCat(animated = true) {
 
     // Predefined bubbles
     const desktopBubble = [
-      " ________________________________",
-      "| Hi! Type ls to view my projects|",
-      "| and type clear to see me again!|",
-      "V--------------------------------"
+      " _____________________________________",
+      "| Hi! Type ls to view Julia's projects|",
+      "| and type clear to see me again!     |",
+      "V-------------------------------------"
     ];
 
     const mobileBubble = [
       " ______________________",
       "| Hi! Type ls to view |",
-      "| my projects and     |",
+      "| Julia's projects and|",
       "| type clear to see me|",
       "| again!              |",
       "V---------------------"
