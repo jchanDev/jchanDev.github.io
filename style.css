@@ -174,17 +174,18 @@ body {
    ========================================================= */
 /* Add this for scrolling on small screens */
 .ascii-cat-wrapper {
-  overflow-x: auto;
-  width: 100%;
+    overflow-x: auto;
+    width: 100%;
 }
 
 .ascii-cat {
-  font-family: monospace;
-  white-space: pre-wrap; /* wrap text naturally */
-  font-size: clamp(1rem, 2vw, 2rem);
-  color: var(--text-color, #5c2a8a);
-  margin-top: 1rem;
-  text-align: left;
+    font-family: monospace;
+    white-space: pre-wrap;
+    /* wrap text naturally */
+    font-size: clamp(1rem, 2vw, 2rem);
+    color: var(--text-color, #5c2a8a);
+    margin-top: 1rem;
+    text-align: left;
 }
 
 /* Cat speech bubble/text */
@@ -247,13 +248,15 @@ body {
 }
 
 .project-card .name {
-  font-weight: 600;
-  color: #5c2a8a;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  word-break: keep-all; /* don’t break mid-word */
-  white-space: normal; /* allow wrapping */
-  font-weight: bold;
-  font-size: 1rem;
+    font-weight: 600;
+    color: #5c2a8a;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    word-break: keep-all;
+    /* don’t break mid-word */
+    white-space: normal;
+    /* allow wrapping */
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .project-card .desc {
@@ -312,22 +315,24 @@ body {
    ========================================================= */
 
 .back {
-  display: inline-block;
-  font-size: clamp(0.9rem, 2.5vw, 1rem); /* shrinks on smaller screens */
-  font-family: 'Fira Code', monospace;
-  font-weight: bold;
-  color: #5c2a8a;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  margin: 0.3125rem;
-  width: 4.5rem;
-  white-space: nowrap; /* prevents wrapping */
-  transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-block;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    /* shrinks on smaller screens */
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+    color: #5c2a8a;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    margin: 0.3125rem;
+    width: 4.5rem;
+    white-space: nowrap;
+    /* prevents wrapping */
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .back:hover {
-  color: #ec4899;
-  transform: translateX(-2px);
+    color: #ec4899;
+    transform: translateX(-2px);
 }
 
 
@@ -341,28 +346,26 @@ body {
 }
 
 .project-title {
-  font-size: clamp(1rem, 2.5vw, 1.75rem);
-  font-weight: 600;
-  color: #5c2a8a;
-  margin: -0.625rem 0;
-  text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
-  white-space: normal; /* allow wrapping */
-  word-break: keep-all; /* don’t break in middle of words */
-  width: 100%;
+    font-size: clamp(1rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    color: #5c2a8a;
+    margin: -0.625rem 0;
+    text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
+
+    display: block;
+    /* allows wrapping */
+    white-space: normal;
+    /* wrap text normally */
+    overflow-wrap: break-word;
+    /* break long words if needed */
+    word-break: normal;
+    /* don’t break inside words unnecessarily */
 }
 
-.project-title::after {
-  content: '';
-}
-
-/* Add breaks after underscores */
-.project-title {
-  word-break: break-word;
-}
-
-.project-title span {
-  display: inline;
-  word-break: break-word;
+@media (max-width: 480px) {
+    .project-title {
+        font-size: clamp(0.8rem, 4vw, 1.1rem);
+    }
 }
 
 .bar {
@@ -622,7 +625,7 @@ body.dark .project-card .desc {
 }
 
 body.dark .project-card .name {
-  color: #eee7f6;
+    color: #eee7f6;
 }
 
 /* --- Navigation + Text --- */
@@ -697,43 +700,46 @@ body.dark #user-input {
 
 /* Hide the iframe on small screens, show the link instead */
 @media (max-width: 480px) {
-  .slideshow-wrapper {
-    display: flex;
-    justify-content: center; /* centers horizontally */
-    align-items: center;     /* optional: centers vertically if you want */
-    flex-direction: column;  /* ensures link appears below any content */
-    gap: 0.5rem;             /* spacing if you add more elements later */
-  }
+    .slideshow-wrapper {
+        display: flex;
+        justify-content: center;
+        /* centers horizontally */
+        align-items: center;
+        /* optional: centers vertically if you want */
+        flex-direction: column;
+        /* ensures link appears below any content */
+        gap: 0.5rem;
+        /* spacing if you add more elements later */
+    }
 
-  .slideshow-wrapper iframe {
-    display: none;
-  }
+    .slideshow-wrapper iframe {
+        display: none;
+    }
 
-  .mobile-slide-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: linear-gradient(to right, #d26eff, #ff80bf);
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5rem;
-  }
+    .mobile-slide-link {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(to right, #d26eff, #ff80bf);
+        color: white;
+        text-decoration: none;
+        border-radius: 0.5rem;
+    }
 }
 
 @media (min-width: 481px) {
-  .mobile-slide-link {
-    display: none;
-  }
+    .mobile-slide-link {
+        display: none;
+    }
 }
 
 
 .title {
-  flex: 1;
-  text-align: center;
-  font-size: clamp(0.75rem, 2vw, 1rem);
-  color: #ffffff;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
+    flex: 1;
+    text-align: center;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
-

@@ -3,29 +3,27 @@ const terminalBody = document.querySelector('.terminal-body');
 // ===============================
 // Theme Toggle Logic
 // ===============================
-const toggleBtn = document.getElementById('toggle-theme');
-const body = document.body;
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById('toggle-theme');
+  const body = document.body;
 
-// Initialize button icon
-function updateThemeButton() {
-  toggleBtn.textContent = body.classList.contains('dark') ? '🌙' : '☀️';
-}
+  function updateThemeButton() {
+    toggleBtn.textContent = body.classList.contains('dark') ? '🌙' : '☀️';
+  }
 
-// On load: set theme from localStorage
-if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark');
-} else {
-  body.classList.remove('dark');
-}
-updateThemeButton();
-
-// Toggle button logic
-toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('dark');
-  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+  } else {
+    body.classList.remove('dark');
+  }
   updateThemeButton();
-});
 
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeButton();
+  });
+});
 
 // ===============================
 // Typing + Command Logic
@@ -226,7 +224,10 @@ document.querySelector('.input-line').addEventListener('click', () => {
   userInput.focus();
 });
 
-document.querySelectorAll('.name, .project-title').forEach(el => {
-  el.innerHTML = el.textContent.replaceAll('_', '_&#8203;');
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".name").forEach(el => {
+    el.innerHTML = el.textContent.replaceAll("_", "_\u200B");
+  });
 });
+
 
