@@ -346,9 +346,23 @@ body {
   color: #5c2a8a;
   margin: -0.625rem 0;
   text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: normal; /* allow wrapping */
+  word-break: keep-all; /* don’t break in middle of words */
   width: 100%;
+}
+
+.project-title::after {
+  content: '';
+}
+
+/* Add breaks after underscores */
+.project-title {
+  word-break: break-word;
+}
+
+.project-title span {
+  display: inline;
+  word-break: break-word;
 }
 
 .bar {
