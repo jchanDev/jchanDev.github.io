@@ -53,14 +53,14 @@ body {
     width: 90%;
     max-width: 46.875rem;
     /* 750px */
-    max-height: 1000px;
+    max-height: none;
     background: rgba(255, 255, 255, 0.8);
     border: 0.1875rem solid #c48dff;
     /* 3px */
     border-radius: 0.7rem;
     /* 10px */
     box-shadow: 0 0.625rem 1.875rem rgba(153, 0, 255, 0.1);
-    overflow: hidden;
+    overflow: visible;
     margin: 0 auto;
     transition: all 0.4s ease, max-height 0.5s ease;
 }
@@ -118,15 +118,19 @@ body {
     padding: 1.5rem;
     background: rgba(255, 255, 255, 0.5);
     color: #5c2a8a;
+    border-radius: inherit;
 }
 
 /* Typing cursor animation */
 .typing-line {
-    border-right: 0.125rem solid #c87bff;
-    white-space: pre;
+    white-space: pre-wrap;
+    /* wrap text */
+    word-wrap: break-word;
+    /* break long words if necessary */
+    width: 100%;
+    /* take full container width */
     overflow: hidden;
-    width: fit-content;
-    animation: blink 0.8s steps(1) infinite;
+    /* optional, keeps cursor effect */
 }
 
 @keyframes blink {
@@ -211,6 +215,9 @@ body {
 .project-card {
     display: flex;
     align-items: center;
+    /* icon aligns with top of text */
+    gap: 0.75rem;
+    /* spacing between icon and text */
     padding: 0.9rem 1rem;
     margin-left: auto;
     margin-right: 0;
@@ -223,6 +230,32 @@ body {
     box-shadow: 0 0.25rem 0.625rem rgba(153, 0, 255, 0.1);
     transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     width: 95%;
+    flex-wrap: nowrap;
+    /* prevent text from dropping under icon on larger screens */
+}
+
+.project-card .name {
+    word-break: break-word;
+    /* long names will wrap nicely */
+}
+
+.project-card .desc {
+    word-break: break-word;
+    /* wrap long description lines */
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        flex-direction: column;
+        /* stack icon above text */
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .project-card .icon {
+        margin-bottom: 0;
+        /* small spacing already handled by gap */
+    }
 }
 
 .project-card:hover {
@@ -294,6 +327,12 @@ body {
     color: #5c2a8a;
     margin: -0.625rem 0;
     text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
+    white-space: pre-wrap;
+    /* wrap text */
+    word-wrap: break-word;
+    /* break long words if necessary */
+    width: 100%;
+    /* take full container width */
 }
 
 .bar {
