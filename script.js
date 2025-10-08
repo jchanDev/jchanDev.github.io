@@ -1,18 +1,27 @@
+const terminal = document.querySelector('.terminal');
+const terminalBody = document.querySelector('.terminal-body')
 const toggleBtn = document.getElementById('toggle-theme');
 const body = document.body;
-const terminal = document.querySelector('.terminal');
-const terminalBody = document.querySelector('.terminal-body');
 
 // ===============================
-// Theme Toggle Logic
+// Theme Toggle Logic (Dark Mode Default)
 // ===============================
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark');
+if (!localStorage.getItem('theme')) {
+    // No saved theme — default to dark
+    body.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+} else if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+} else {
+    body.classList.remove('dark');
 }
 
+// ===============================
+// Toggle Button
+// ===============================
 toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('dark');
-  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
 });
 
 // ===============================
