@@ -60,7 +60,7 @@ body {
     border-radius: 0.7rem;
     /* 10px */
     box-shadow: 0 0.625rem 1.875rem rgba(153, 0, 255, 0.1);
-    overflow: visible;
+    overflow: hidden;
     margin: 0 auto;
     transition: all 0.4s ease, max-height 0.5s ease;
 }
@@ -171,19 +171,30 @@ body {
 /* =========================================================
    ASCII CAT
    ========================================================= */
-.ascii-cat {
-    font-family: monospace;
-    white-space: pre;
-    font-size: 2rem;
-    color: var(--text-color, #5c2a8a);
-    margin-top: 1rem;
-    text-align: left;
+/* Add this for scrolling on small screens */
+.ascii-cat-wrapper {
+  overflow-x: auto;
+  width: 100%;
 }
 
+.ascii-cat {
+  font-family: monospace;
+  white-space: pre-wrap; /* wrap text naturally */
+  font-size: clamp(1rem, 2vw, 2rem);
+  color: var(--text-color, #5c2a8a);
+  margin-top: 1rem;
+  text-align: left;
+}
+
+/* Cat speech bubble/text */
 .cat-speech {
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
     display: inline-block;
     color: var(--text-color, #5c2a8a);
+    max-width: 95%;
+    word-wrap: break-word;
+    line-height: 1.2;
+    margin-top: 0.25rem;
 }
 
 /* Fade animations */

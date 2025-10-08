@@ -75,45 +75,72 @@ function showCat(animated = true) {
     if (animated) cat.classList.add('fade-in');
     terminalBody.insertBefore(cat, projects);
 
-    const frames = [
-`<span class="cat-speech">
-                 _________________________________________________________________
-                | Hi! Type ls to view my projects and type clear to see me again! |
-                V-----------------------------------------------------------------</span>
-  /\\_/\\  
- ( -.- ) 
-  >   <  
-  /   \\
- (     )`,
-`<span class="cat-speech">  
-                 _________________________________________________________________
-                | Hi! Type ls to view my projects and type clear to see me again! |
-                V-----------------------------------------------------------------</span>
-  /\\_/\\  
- ( O.O ) 
-  >   <  
-  /   \\
- (     )`,
-`<span class="cat-speech">                              
-                 _________________________________________________________________
-                | Hi! Type ls to view my projects and type clear to see me again! |
-                V-----------------------------------------------------------------</span>
-  /\\_/\\  
- ( O.O ) 
-  >   <  
-  /   \\
- (     )`
-    ];
+    const catFaces = ["( -.- )", "( O.O )", "( O.O )"];
+    const catText = "Hi! Type ls to view my projects and type clear to see me again!";
+
+    function wrapText(text, maxLen) {
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+      words.forEach(word => {
+        if ((currentLine + (currentLine ? ' ' : '') + word).length <= maxLen) {
+          currentLine += (currentLine ? ' ' : '') + word;
+        } else {
+          lines.push(currentLine);
+          currentLine = word;
+        }
+      });
+      if (currentLine) lines.push(currentLine);
+      return lines;
+    }
+
+    function buildFrame(face) {
+      const terminalWidth = terminalBody.clientWidth;
+      // Calculate font size based on terminal width
+      const baseFontSize = 20; // default cat font size in px
+      const minFontSize = 12;  // smallest font size on mobile
+      const maxCharsPerLine = 40;
+      const scale = Math.max(minFontSize, Math.min(baseFontSize, terminalWidth / 30));
+      cat.style.fontSize = scale + 'px';
+
+      const approxCharWidth = scale * 0.5; // roughly half font size in px
+      const maxChars = Math.max(10, Math.floor((terminalWidth - 40) / approxCharWidth));
+      const wrapped = wrapText(catText, Math.min(maxChars, maxCharsPerLine));
+      const actualLongest = Math.max(...wrapped.map(l => l.length));
+
+      const top = " " + "_".repeat(actualLongest + 2);
+      const bubble = wrapped.map(line => {
+        const padding = actualLongest - line.length;
+        return "| " + line + " ".repeat(padding) + " |";
+      }).join("\n");
+      const bottom = "V" + "-".repeat(actualLongest + 1);
+
+      const catArt = `
+ /\\_/\\  
+${face} 
+ >   <  
+ /   \\
+(     )`;
+
+      return `${top}\n${bubble}\n${bottom}\n${catArt}`;
+    }
 
     let frameIndex = 0;
-    cat.innerHTML = frames[0];
 
-    catInterval = setInterval(() => {
-      if (cat) cat.innerHTML = frames[frameIndex];
-      frameIndex = (frameIndex + 1) % frames.length;
-    }, 800);
+    function updateCat() {
+      if (!cat) return;
+      cat.innerText = buildFrame(catFaces[frameIndex]);
+      frameIndex = (frameIndex + 1) % catFaces.length;
+    }
 
-    terminal.classList.add('compact'); // ensure terminal stays small
+    updateCat();
+    catInterval = setInterval(updateCat, 800);
+
+    terminal.classList.add('compact');
+
+    window.addEventListener('resize', () => {
+      if (cat) updateCat();
+    });
   }
 }
 
