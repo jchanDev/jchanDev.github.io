@@ -675,3 +675,33 @@ body.dark #user-input {
     color: #ffffff;
     caret-color: #ffffff;
 }
+
+/* Hide the iframe on small screens, show the link instead */
+@media (max-width: 480px) {
+  .slideshow-wrapper {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    align-items: center;     /* optional: centers vertically if you want */
+    flex-direction: column;  /* ensures link appears below any content */
+    gap: 0.5rem;             /* spacing if you add more elements later */
+  }
+
+  .slideshow-wrapper iframe {
+    display: none;
+  }
+
+  .mobile-slide-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(to right, #d26eff, #ff80bf);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+}
+
+@media (min-width: 481px) {
+  .mobile-slide-link {
+    display: none;
+  }
+}
