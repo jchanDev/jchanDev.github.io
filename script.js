@@ -1,19 +1,31 @@
-const toggleBtn = document.getElementById('toggle-theme');
-const body = document.body;
 const terminal = document.querySelector('.terminal');
 const terminalBody = document.querySelector('.terminal-body');
-
 // ===============================
 // Theme Toggle Logic
 // ===============================
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark');
+const toggleBtn = document.getElementById('toggle-theme');
+const body = document.body;
+
+// Initialize button icon
+function updateThemeButton() {
+  toggleBtn.textContent = body.classList.contains('dark') ? '🌙' : '☀️';
 }
 
+// On load: set theme from localStorage
+if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark');
+} else {
+  body.classList.remove('dark');
+}
+updateThemeButton();
+
+// Toggle button logic
 toggleBtn.addEventListener('click', () => {
   body.classList.toggle('dark');
   localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  updateThemeButton();
 });
+
 
 // ===============================
 // Typing + Command Logic

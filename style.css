@@ -93,6 +93,7 @@ body {
 
 .red {
     background-color: #ff5f56;
+    width: 0.75rem;
 }
 
 .yellow {
@@ -309,19 +310,25 @@ body {
 /* =========================================================
    NAVIGATION LINKS
    ========================================================= */
+
 .back {
-    text-decoration: none;
-    color: #5c2a8a;
-    font-family: 'Fira Code', monospace;
-    cursor: pointer;
-    transition: color 0.3s;
-    margin: 0.3125rem;
-    width: 4.5rem;
+  display: inline-block;
+  font-size: clamp(0.75rem, 2.5vw, 1rem); /* shrinks on smaller screens */
+  font-family: 'Fira Code', monospace;
+  color: #5c2a8a;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  margin: 0.3125rem;
+  width: 4.5rem;
+  white-space: nowrap; /* prevents wrapping */
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .back:hover {
-    color: #ec4899;
+  color: #ec4899;
+  transform: translateX(-2px);
 }
+
 
 /* =========================================================
    PROJECT PAGE LAYOUT
@@ -333,17 +340,14 @@ body {
 }
 
 .project-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #5c2a8a;
-    margin: -0.625rem 0;
-    text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
-    white-space: pre-wrap;
-    /* wrap text */
-    word-wrap: break-word;
-    /* break long words if necessary */
-    width: 100%;
-    /* take full container width */
+  font-size: clamp(1rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: #5c2a8a;
+  margin: -0.625rem 0;
+  text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  width: 100%;
 }
 
 .bar {
@@ -705,3 +709,16 @@ body.dark #user-input {
     display: none;
   }
 }
+
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
