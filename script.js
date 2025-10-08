@@ -1,206 +1,207 @@
 const toggleBtn = document.getElementById('toggle-theme');
 const body = document.body;
+const terminal = document.querySelector('.terminal');
+const terminalBody = document.querySelector('.terminal-body');
 
-// Load saved theme on page load
+// ===============================
+// Theme Toggle Logic
+// ===============================
 if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark');
+  body.classList.add('dark');
 }
 
-// Toggle theme when button clicked
 toggleBtn.addEventListener('click', () => {
-    body.classList.toggle('dark');
-
-    if (body.classList.contains('dark')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
+  body.classList.toggle('dark');
+  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
 });
 
 // ===============================
-// Typewriter + "ls" command logic
+// Typing + Command Logic
 // ===============================
+const lines = document.querySelectorAll('.typing-line');
+const userInput = document.getElementById('user-input');
+const projects = document.querySelector('.projects');
+const aboutPanel = document.querySelector('.about-panel');
 
-const lines = document.querySelectorAll(".typing-line");
-const userInput = document.getElementById("user-input");
-const projects = document.querySelector(".projects");
-const aboutPanel = document.querySelector(".about-panel");
-const terminalBody = document.querySelector(".terminal-body");
+projects.classList.remove('show');
+aboutPanel.classList.remove('show');
 
-// Hide projects and about initially
-projects.classList.remove("show");
-aboutPanel.classList.remove("show");
+// Default to compact (small) terminal at start
+terminal.classList.add('compact');
 
-// Typewriter animation
 async function typeLine(line, delay = 200) {
-    const text = line.dataset.text;
-    let i = 0;
-    return new Promise(resolve => {
-        const interval = setInterval(() => {
-            line.textContent = text.slice(0, i++);
-            if (i > text.length) {
-                clearInterval(interval);
-                line.style.borderRight = "none";
-                setTimeout(resolve, delay);
-            }
-        }, 40);
-    });
+  const text = line.dataset.text;
+  let i = 0;
+  return new Promise(resolve => {
+    const interval = setInterval(() => {
+      line.textContent = text.slice(0, i++);
+      if (i > text.length) {
+        clearInterval(interval);
+        line.style.borderRight = 'none';
+        setTimeout(resolve, delay);
+      }
+    }, 40);
+  });
 }
 
 async function startTyping() {
-    for (let i = 0; i < lines.length; i++) {
-        await typeLine(lines[i]);
-    }
-    document.querySelector(".input-line").style.display = "block";
-    userInput.focus();
+  for (let i = 0; i < lines.length; i++) {
+    await typeLine(lines[i]);
+  }
+  document.querySelector('.input-line').style.display = 'block';
+  userInput.focus();
 }
 
-let lastCommandLine = null; // track last "> ls" command
-let cat = null;             // reference to cat element
-let catInterval = null;     // reference to cat animation interval
+let lastCommandLine = null;
+let cat = null;
+let catInterval = null;
 
 // ===============================
-// CAT FUNCTIONS
+// CAT ANIMATION (with small speech text)
 // ===============================
+function showCat(animated = true) {
+  if (!cat) {
+    cat = document.createElement('pre');
+    cat.classList.add('ascii-cat');
+    if (animated) cat.classList.add('fade-in');
+    terminalBody.insertBefore(cat, projects);
 
-function showCat() {
-    if (!cat) {
-        cat = document.createElement("pre");
-        cat.classList.add("ascii-cat");
-        terminalBody.insertBefore(cat, projects);
-
-        const frames = [
-            `   _____
-  | Hi! |
-   -----
-  /\\__/\\  
- ( o.o ) 
-  >   <  
-/    \\
-(     )`,
-            `   _____
-  | Hi! |
-   -----
-  /\\__/\\  
- ( o.o ) 
-  >   <  
-/    \\
-(     )`,
-            `   _____
-  | Hi! |
-   -----
-  /\\__/\\  
+    const frames = [
+`<span class="cat-speech">
+                 _________________________________________________________________
+                | Hi! Type ls to view my projects and type clear to see me again! |
+                V-----------------------------------------------------------------</span>
+  /\\_/\\  
  ( -.- ) 
   >   <  
-/    \\
-(     )`
-        ];
+  /   \\
+ (     )`,
+`<span class="cat-speech">  
+                 _________________________________________________________________
+                | Hi! Type ls to view my projects and type clear to see me again! |
+                V-----------------------------------------------------------------</span>
+  /\\_/\\  
+ ( O.O ) 
+  >   <  
+  /   \\
+ (     )`,
+`<span class="cat-speech">                              
+                 _________________________________________________________________
+                | Hi! Type ls to view my projects and type clear to see me again! |
+                V-----------------------------------------------------------------</span>
+  /\\_/\\  
+ ( O.O ) 
+  >   <  
+  /   \\
+ (     )`
+    ];
 
-        let frameIndex = 0;
-        catInterval = setInterval(() => {
-            if (cat) cat.textContent = frames[frameIndex];
-            frameIndex = (frameIndex + 1) % frames.length;
-        }, 600);
-    }
+    let frameIndex = 0;
+    cat.innerHTML = frames[0];
+
+    catInterval = setInterval(() => {
+      if (cat) cat.innerHTML = frames[frameIndex];
+      frameIndex = (frameIndex + 1) % frames.length;
+    }, 800);
+
+    terminal.classList.add('compact'); // ensure terminal stays small
+  }
 }
 
 function hideCat() {
-    if (cat) {
-        cat.remove();
-        cat = null;
-    }
-    if (catInterval) {
-        clearInterval(catInterval);
-        catInterval = null;
-    }
+  if (cat) {
+    cat.classList.add('fade-out');
+    setTimeout(() => {
+      if (cat) cat.remove();
+      cat = null;
+    }, 300);
+  }
+  if (catInterval) {
+    clearInterval(catInterval);
+    catInterval = null;
+  }
+  terminal.classList.remove('compact'); // expand terminal when showing projects
 }
 
 // ===============================
 // INITIAL SETUP
 // ===============================
-
-// Run typing only the first time per session
-if (!sessionStorage.getItem("hasVisited")) {
-    startTyping().then(() => {
-        sessionStorage.setItem("hasVisited", "true");
-    });
+if (!sessionStorage.getItem('hasVisited')) {
+  startTyping().then(() => {
+    sessionStorage.setItem('hasVisited', 'true');
+    showCat();
+  });
 } else {
-    // Skip typing animation — show everything immediately
-    lines.forEach(line => {
-        line.textContent = line.dataset.text;
-        line.style.borderRight = "none";
-    });
-    document.querySelector(".input-line").style.display = "flex";
-    userInput.focus();
+  lines.forEach(line => {
+    line.textContent = line.dataset.text;
+    line.style.borderRight = 'none';
+  });
+  document.querySelector('.input-line').style.display = 'flex';
+  userInput.focus();
 
-    // Show projects if "ls" was previously typed
-    if (sessionStorage.getItem("ranLS") === "true") {
-        projects.classList.add("show");
-        aboutPanel.classList.add("show");
+  if (sessionStorage.getItem('ranLS') === 'true') {
+    projects.classList.add('show');
+    aboutPanel.classList.add('show');
+    terminal.classList.remove('compact');
 
-        lastCommandLine = document.createElement("p");
-        lastCommandLine.textContent = "> ls";
-        lastCommandLine.style.color = "inherit";
-        lastCommandLine.style.marginBottom = "0.3em";
-        terminalBody.insertBefore(lastCommandLine, document.querySelector(".input-line"));
-    } else {
-        // Show cat if "ls" not typed
-        showCat();
-    }
+    lastCommandLine = document.createElement('p');
+    lastCommandLine.textContent = '> ls';
+    lastCommandLine.style.color = 'inherit';
+    lastCommandLine.style.marginBottom = '0.3em';
+    terminalBody.insertBefore(lastCommandLine, document.querySelector('.input-line'));
+  } else {
+    showCat(false);
+  }
 }
 
 // ===============================
 // USER INPUT HANDLING
 // ===============================
+userInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
 
-userInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        e.preventDefault();
+    const command = userInput.textContent.trim();
+    userInput.textContent = '';
+    terminalBody.querySelectorAll('.error').forEach(el => el.remove());
 
-        const command = userInput.textContent.trim();
-        userInput.textContent = "";
+    if (command === 'ls') {
+      projects.classList.add('show');
+      aboutPanel.classList.add('show');
+      hideCat();
 
-        // Remove old error messages
-        terminalBody.querySelectorAll(".error").forEach(el => el.remove());
+      if (lastCommandLine) lastCommandLine.remove();
 
-        if (command === "ls") {
-            projects.classList.add("show");
-            aboutPanel.classList.add("show");
-            hideCat();
+      lastCommandLine = document.createElement('p');
+      lastCommandLine.textContent = '> ls';
+      lastCommandLine.style.color = 'inherit';
+      lastCommandLine.style.marginBottom = '0.3em';
+      terminalBody.insertBefore(lastCommandLine, document.querySelector('.input-line'));
 
-            if (lastCommandLine) lastCommandLine.remove();
+      sessionStorage.setItem('ranLS', 'true');
+    } 
+    else if (command === 'clear') {
+      projects.classList.remove('show');
+      aboutPanel.classList.remove('show');
 
-            lastCommandLine = document.createElement("p");
-            lastCommandLine.textContent = "> ls";
-            lastCommandLine.style.color = "inherit";
-            lastCommandLine.style.marginBottom = "0.3em";
-            terminalBody.insertBefore(lastCommandLine, document.querySelector(".input-line"));
+      if (lastCommandLine) {
+        lastCommandLine.remove();
+        lastCommandLine = null;
+      }
 
-            sessionStorage.setItem("ranLS", "true");
-        }
-        else if (command === "clear") {
-            projects.classList.remove("show");
-            aboutPanel.classList.remove("show");
-
-            if (lastCommandLine) {
-                lastCommandLine.remove();
-                lastCommandLine = null;
-            }
-
-            sessionStorage.removeItem("ranLS");
-            showCat();
-        }
-        else if (command !== "") {
-            const error = document.createElement("p");
-            error.textContent = `${command}: command not found. Type ls or clear`;
-            error.style.color = "#ff5c8d";
-            error.classList.add("error");
-            terminalBody.insertBefore(error, userInput.parentNode.nextSibling);
-        }
+      sessionStorage.removeItem('ranLS');
+      showCat();
+    } 
+    else if (command !== '') {
+      const error = document.createElement('p');
+      error.textContent = `${command}: command not found. Type ls or clear`;
+      error.style.color = '#ff5c8d';
+      error.classList.add('error');
+      terminalBody.insertBefore(error, userInput.parentNode.nextSibling);
     }
+  }
 });
 
-// Focus user input when clicking anywhere on the line
-document.querySelector(".input-line").addEventListener("click", () => {
-    userInput.focus();
+document.querySelector('.input-line').addEventListener('click', () => {
+  userInput.focus();
 });

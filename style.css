@@ -1,526 +1,512 @@
 /* =========================================================
-   FONT + BASE
+   FONT + BASE STYLES
    ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
 
 html {
-    font-size: 16px;
-    /* 1rem = 16px */
+  font-size: 16px; /* 1rem = 16px */
 }
 
 * {
-    transition: background 0.4s ease, color 0.4s ease,
-        border-color 0.4s ease, box-shadow 0.4s ease,
-        transform 0.3s ease;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  transition: background 0.4s ease, color 0.4s ease,
+              border-color 0.4s ease, box-shadow 0.4s ease,
+              transform 0.3s ease;
 }
 
 body {
-    font-family: 'Fira Code', monospace;
-    background: linear-gradient(135deg, #f3e7ff, #ffe6f7);
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    /* allow scrolling */
-    min-height: 100vh;
-    margin: 0;
-    padding: 2rem 0;
-    /* add top/bottom space */
-    transition: background 0.5s, color 0.5s;
+  font-family: 'Fira Code', monospace;
+  background: linear-gradient(135deg, #f3e7ff, #ffe6f7);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem 0;
+  transition: background 0.5s, color 0.5s;
 }
 
 /* =========================================================
    TERMINAL CONTAINER
    ========================================================= */
 .terminal {
-    width: 90%;
-    max-width: 46.875rem;
-    /* 750px */
-    background: rgba(255, 255, 255, 0.8);
-    border: 0.1875rem solid #D8B4FE;
-    /* 3px */
-    border-radius: 0.7rem;
-    /* 10px */
-    box-shadow: 0 0.625rem 1.875rem rgba(153, 0, 255, 0.1);
-    /* 10px 30px */
-    overflow: hidden;
-    transition: all 0.4s ease;
+  width: 90%;
+  max-width: 46.875rem; /* 750px */
+  max-height: 1000px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 0.1875rem solid #D8B4FE; /* 3px */
+  border-radius: 0.7rem; /* 10px */
+  box-shadow: 0 0.625rem 1.875rem rgba(153, 0, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.4s ease, max-height 0.5s ease;
+}
+
+/* Compact mode (when cat is shown) */
+.terminal.compact {
+  max-height: 600px;
 }
 
 /* =========================================================
    TERMINAL HEADER
    ========================================================= */
 .terminal-header {
-    background: linear-gradient(to right, #d26eff, #ff80bf);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0.875rem;
-    /* 8px 14px */
-    color: white;
-    font-weight: 500;
+  background: linear-gradient(to right, #d26eff, #ff80bf);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.875rem;
+  color: white;
+  font-weight: 500;
 }
 
 .terminal-header .buttons span {
-    display: inline-block;
-    width: 0.625rem;
-    /* 10px */
-    height: 0.625rem;
-    margin-right: 0.3125rem;
-    /* 5px */
-    border-radius: 50%;
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-right: 0.3125rem;
+  border-radius: 50%;
 }
 
-.red {
-    background-color: #ff5f56;
-}
-
-.yellow {
-    background-color: #ffbd2e;
-}
-
-.green {
-    background-color: #27c93f;
-}
+.red    { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green  { background-color: #27c93f; }
 
 #toggle-theme {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 /* =========================================================
    TERMINAL BODY
    ========================================================= */
 .terminal-body {
-    padding: 1.5rem;
-    /* 24px */
-    background: rgba(255, 255, 255, 0.5);
-    color: #5c2a8a;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  color: #5c2a8a;
 }
 
 /* Typing cursor animation */
 .typing-line {
-    border-right: 0.125rem solid #c87bff;
-    /* 2px */
-    white-space: pre;
-    overflow: hidden;
-    width: fit-content;
-    animation: blink 0.8s steps(1) infinite;
+  border-right: 0.125rem solid #c87bff;
+  white-space: pre;
+  overflow: hidden;
+  width: fit-content;
+  animation: blink 0.8s steps(1) infinite;
 }
 
 @keyframes blink {
-    50% {
-        border-color: transparent;
-    }
+  50% { border-color: transparent; }
+}
+
+/* =========================================================
+   INPUT LINE
+   ========================================================= */
+.input-line {
+  display: none; /* hidden by default */
+  margin-top: 10px;
+  font-family: 'Fira Code', monospace;
+  color: #7e22ce;
+  cursor: text;
+}
+
+.prompt {
+  color: #c87bff;
+  margin-right: 5px;
+}
+
+#user-input {
+  display: inline-block;
+  min-width: 1ch;
+  outline: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  caret-color: #c87bff;
+}
+
+/* =========================================================
+   ASCII CAT
+   ========================================================= */
+.ascii-cat {
+  font-family: monospace;
+  white-space: pre;
+  font-size: 2rem;
+  color: var(--text-color, #5c2a8a);
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.cat-speech {
+  font-size: 0.8rem;
+  display: inline-block;
+  color: var(--text-color, #5c2a8a);
+}
+
+/* Fade animations */
+.ascii-cat.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s forwards;
+}
+
+.ascii-cat.fade-out {
+  opacity: 1;
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
 }
 
 /* =========================================================
    PROJECT CARDS
    ========================================================= */
 .project-card {
-    display: flex;
-    align-items: center;
-    padding: 0.9rem 1rem;
-    /* 12px 16px */
-    margin-left: auto;
-    margin-right: 0;
-    margin-bottom: 0.5rem;
-    /* 8px */
-    background: rgba(255, 255, 255, 0.8);
-    color: #5c2a8a;
-    border: 0.125rem solid #D8B4FE;
-    /* 2px */
-    border-radius: 0.7rem;
-    /* 8px */
-    cursor: pointer;
-    box-shadow: 0 0.25rem 0.625rem rgba(153, 0, 255, 0.1);
-    /* 4px 10px */
-    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
-    width: 95%;
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  margin-left: auto;
+  margin-right: 0;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: #5c2a8a;
+  border: 0.125rem solid #D8B4FE;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.625rem rgba(153, 0, 255, 0.1);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  width: 95%;
 }
 
 .project-card:hover {
-    background: rgba(241, 223, 255, 0.95);
-    transform: translateY(-0.125rem);
-    /* 2px */
+  background: rgba(241, 223, 255, 0.95);
+  transform: translateY(-0.125rem);
 }
 
 .project-card .icon {
-    font-size: 1.5rem;
-    /* 24px */
-    margin-right: 0.75rem;
-    /* 12px */
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
 }
 
 .project-card .icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .project-card .icon svg path {
-    stroke: #5c2a8a;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
+  stroke: #5c2a8a;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .project-card:hover .icon svg path {
-    stroke: #ec4899;
+  stroke: #ec4899;
 }
 
 .project-card .name {
-    font-weight: bold;
-    font-size: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .project-card .desc {
-    font-size: 0.95rem;
-    /* 9px */
-    color: #7a4ca0;
+  font-size: 0.95rem;
+  color: #7a4ca0;
 }
 
 /* =========================================================
    NAVIGATION LINKS
    ========================================================= */
 .back {
-    text-decoration: none;
-    color: #5c2a8a;
-    font-family: 'Fira Code', monospace;
-    cursor: pointer;
-    transition: color 0.3s;
-    margin: 0.3125rem;
-    /* 5px */
-    width: 4.5rem;
+  text-decoration: none;
+  color: #5c2a8a;
+  font-family: 'Fira Code', monospace;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin: 0.3125rem;
+  width: 4.5rem;
 }
 
 .back:hover {
-    color: #ec4899;
+  color: #ec4899;
 }
 
 /* =========================================================
    PROJECT PAGE LAYOUT
    ========================================================= */
 .project-page {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-/* Title + Divider */
 .project-title {
-    font-size: 1.125rem;
-    /* 18px */
-    font-weight: 600;
-    color: #5c2a8a;
-    margin: -0.625rem 0;
-    text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
-    /* 3px */
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #5c2a8a;
+  margin: -0.625rem 0;
+  text-shadow: 0 0 0.1875rem rgba(153, 0, 255, 0.2);
 }
 
 .bar {
-    width: 14%;
-    height: 0.3125rem;
-    /* 5px */
-    background: linear-gradient(to right, #d26eff, #ff80bf);
-    border-radius: 0.125rem;
-    /* 2px */
+  width: 14%;
+  height: 0.3125rem;
+  background: linear-gradient(to right, #d26eff, #ff80bf);
+  border-radius: 0.125rem;
 }
 
 /* =========================================================
    PANELS
    ========================================================= */
 .panel {
-    border: 0.125rem solid #D8B4FE;
-    border-radius: 0.7rem;
-    /* 10px */
-    padding: 1rem 1.25rem;
-    /* 16px 20px */
-    margin: 0;
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0.25rem 0.625rem rgba(153, 0, 255, 0.05);
-    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  border: 0.125rem solid #D8B4FE;
+  border-radius: 0.7rem;
+  padding: 1rem 1.25rem;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0.25rem 0.625rem rgba(153, 0, 255, 0.05);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .panel .label {
-    color: #ec4899;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    /* 8px */
+  color: #ec4899;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .panel p,
 .panel ul {
-    margin: 0;
-    color: #4a1f70;
+  margin: 0;
+  color: #4a1f70;
 }
 
 .about-panel {
-    margin-top: 1.875rem;
-    /* 30px */
+  margin-top: 1.875rem;
 }
 
 /* =========================================================
    TAGS + FEATURES
    ========================================================= */
 .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .tags span {
-    background: rgba(190, 110, 255, 0.313);
-    color: #5c2a8a;
-    border: 0.125rem solid #D8B4FE;
-    border-radius: 1.25rem;
-    padding: 0.3rem 0.625rem;
-    font-size: 0.9rem;
-    /* 9px */
-    transition: all 0.3s ease;
+  background: rgba(190, 110, 255, 0.313);
+  color: #5c2a8a;
+  border: 0.125rem solid #D8B4FE;
+  border-radius: 1.25rem;
+  padding: 0.3rem 0.625rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
 .features {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    /* 24px */
+  list-style-type: disc;
+  padding-left: 1.5rem;
 }
 
 .features li {
-    margin: 0.375rem 0;
-    /* 6px */
-    padding-left: 0;
-    position: relative;
+  margin: 0.375rem 0;
+  padding-left: 0;
+  position: relative;
 }
 
 .features li::before {
-    content: none;
+  content: none;
 }
 
 /* =========================================================
    BUTTONS + ACTIONS
    ========================================================= */
 .actions {
-    display: flex;
-    gap: 0.75rem;
-    /* 12px */
-    margin-top: 0.625rem;
-    /* 10px */
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.625rem;
 }
 
 .btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    /* 8px 16px */
-    border-radius: 0.5rem;
-    border: 0.125rem solid #D8B4FE;
-    color: #5c2a8a;
-    background: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 0.125rem solid #D8B4FE;
+  color: #5c2a8a;
+  background: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
-    background: rgba(241, 223, 255, 0.95);
-    transform: translateY(-0.125rem);
+  background: rgba(241, 223, 255, 0.95);
+  transform: translateY(-0.125rem);
 }
 
 .btn.primary {
-    background: linear-gradient(to right, #d26eff, #ff80bf);
-    color: white;
-    border: none;
-    box-shadow: 0 0.25rem 0.75rem rgba(153, 0, 255, 0.2);
+  background: linear-gradient(to right, #d26eff, #ff80bf);
+  color: white;
+  border: none;
+  box-shadow: 0 0.25rem 0.75rem rgba(153, 0, 255, 0.2);
 }
 
 .btn.primary:hover {
-    box-shadow: 0 0.375rem 0.875rem rgba(153, 0, 255, 0.3);
-    transform: translateY(-0.125rem);
+  box-shadow: 0 0.375rem 0.875rem rgba(153, 0, 255, 0.3);
+  transform: translateY(-0.125rem);
 }
 
 /* =========================================================
    SLIDESHOW
    ========================================================= */
 .slideshow-wrapper {
-    width: 100%;
-    max-width: 43.75rem;
-    /* 700px */
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    margin-top: 0.625rem;
-    /* 10px */
+  width: 100%;
+  max-width: 43.75rem;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  margin-top: 0.625rem;
 }
 
 .slideshow-wrapper iframe {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================================================
+   TRANSITIONS (Projects/About)
+   ========================================================= */
+.projects,
+.about-panel {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.projects.show,
+.about-panel.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
 }
 
 /* =========================================================
    DARK MODE
    ========================================================= */
 body.dark {
-    background: linear-gradient(135deg, #11001d, #3f0e64);
-    color: #eee;
+  background: linear-gradient(135deg, #11001d, #3f0e64);
+  color: #eee;
 }
 
+/* --- Terminal --- */
 body.dark .terminal {
-    background: #211031;
-    border-color: #7E22CE;
-    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.4);
+  background: #211031;
+  border-color: #7E22CE;
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.4);
 }
 
 body.dark .terminal-header {
-    background: linear-gradient(to right, #5b2a8a, #d3699e);
-    color: #f3d9ff;
+  background: linear-gradient(to right, #5b2a8a, #d3699e);
+  color: #f3d9ff;
 }
 
 body.dark .terminal-body {
-    background: #1e1c22;
-    color: #eee;
+  background: #1e1c22;
+  color: #eee;
 }
 
 body.dark .typing-line {
-    border-right: 0.125rem solid #cfaeff;
+  border-right: 0.125rem solid #cfaeff;
 }
 
+/* --- Project Cards --- */
 body.dark .project-card {
-    background: #27252d;
-    border-color: #7E22CE;
-    color: #f3d9ff;
-    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
+  background: #27252d;
+  border-color: #7E22CE;
+  color: #f3d9ff;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
 }
 
 body.dark .project-card:hover {
-    background: #7e22ce65;
-    border-color: #9d22ce;
-}
-
-body.dark .project-card:hover .icon svg path {
-    stroke: #9d22ce;
-    /* stroke changes on card hover */
+  background: #7e22ce65;
+  border-color: #9d22ce;
 }
 
 body.dark .project-card .icon svg path {
-    stroke: #662f99;
-    /* default stroke */
+  stroke: #662f99;
 }
 
+body.dark .project-card:hover .icon svg path {
+  stroke: #9d22ce;
+}
 
 body.dark .project-card .desc {
-    color: #d8c4f0;
+  color: #d8c4f0;
 }
 
-body.dark .back {
-    color: #f8eaff;
-}
-
-body.dark .back:hover {
-    color: #ec4899;
-}
+/* --- Navigation + Text --- */
+body.dark .back { color: #f8eaff; }
+body.dark .back:hover { color: #ec4899; }
 
 body.dark .panel {
-    background: #27252d;
-    border-color: #7E22CE;
-    color: #f3d9ff;
+  background: #27252d;
+  border-color: #7E22CE;
+  color: #f3d9ff;
 }
 
-body.dark .panel .label {
-    color: #ec4899;
-}
+body.dark .panel .label { color: #ec4899; }
 
 body.dark .panel p,
-body.dark .panel ul {
-    color: #e8d8ff;
-}
+body.dark .panel ul { color: #e8d8ff; }
 
-body.dark .project-title {
-    color: #f3d9ff;
-}
+body.dark .project-title { color: #f3d9ff; }
 
 body.dark .bar {
-    background: linear-gradient(to right, #a46cff, #ff9be9);
+  background: linear-gradient(to right, #a46cff, #ff9be9);
 }
 
 body.dark .tags span {
-    background: rgba(160, 80, 255, 0.2);
-    color: #f0e6ff;
-    border-color: #7E22CE;
+  background: rgba(160, 80, 255, 0.2);
+  color: #f0e6ff;
+  border-color: #7E22CE;
 }
 
-body.dark .features li::before {
-    color: #ffb6ff;
-}
+body.dark .features li::before { color: #ffb6ff; }
 
 body.dark .btn {
-    background: rgba(80, 50, 110, 0.7);
-    border-color: #7E22CE;
-    color: #f3d9ff;
+  background: rgba(80, 50, 110, 0.7);
+  border-color: #7E22CE;
+  color: #f3d9ff;
 }
 
 body.dark .btn:hover {
-    background: rgba(120, 70, 160, 0.8);
+  background: rgba(120, 70, 160, 0.8);
 }
 
 body.dark .btn.primary {
-    background: linear-gradient(to right, #a46cff, #ff80d6);
-    color: white;
+  background: linear-gradient(to right, #a46cff, #ff80d6);
+  color: white;
 }
 
-.projects,
-.about-panel {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: all 0.5s ease;
-    pointer-events: none;
+/* --- Cat + Input --- */
+body.dark .ascii-cat,
+body.dark .cat-speech {
+  color: #ffffff;
 }
 
-.projects.show,
-.about-panel.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-}
-
-.input-line {
-    display: none;
-    /* hidden by default */
-    margin-top: 10px;
-    font-family: 'Fira Code', monospace;
-    color: #7e22ce;
-    cursor: text;
-}
-
-.prompt {
-    color: #c87bff;
-    margin-right: 5px;
-}
-
-#user-input {
-    display: inline-block;
-    min-width: 1ch;
-    outline: none;
-    border: none;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    background: transparent;
-    caret-color: #c87bff;
-}
-
-/* ===============================
-   ASCII Cat Styles
-   =============================== */
-.ascii-cat {
-    text-align: center;
-    margin: 2rem auto;
-    color: #5c2a8a;
-    font-size: 3rem;
-    /* adjust size of cat */
-    white-space: pre;
-    /* preserve spaces and newlines */
+body.dark .input-line,
+body.dark .prompt,
+body.dark #user-input {
+  color: #ffffff;
+  caret-color: #ffffff;
 }
