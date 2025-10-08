@@ -225,3 +225,8 @@ userInput.addEventListener('keydown', e => {
 document.querySelector('.input-line').addEventListener('click', () => {
   userInput.focus();
 });
+
+document.querySelectorAll('.name, .project-title').forEach(el => {
+  el.innerHTML = el.textContent.replaceAll('_', '_&#8203;');
+});
+

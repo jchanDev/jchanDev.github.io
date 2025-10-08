@@ -247,8 +247,13 @@ body {
 }
 
 .project-card .name {
-    word-break: break-word;
-    /* long names will wrap nicely */
+  font-weight: 600;
+  color: #5c2a8a;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  word-break: keep-all; /* don’t break mid-word */
+  white-space: normal; /* allow wrapping */
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .project-card .desc {
@@ -295,11 +300,6 @@ body {
 
 .project-card:hover .icon svg path {
     stroke: #ec4899;
-}
-
-.project-card .name {
-    font-weight: bold;
-    font-size: 1rem;
 }
 
 .project-card .desc {
@@ -599,7 +599,7 @@ body.dark .terminal-body {
 /* --- Project Cards --- */
 body.dark .project-card {
     background: #27252d;
-    border-color: #7E22CE;
+    border-color: #751bc4;
     color: #f3d9ff;
     box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
 }
@@ -610,15 +610,19 @@ body.dark .project-card:hover {
 }
 
 body.dark .project-card .icon svg path {
-    stroke: #662f99;
+    stroke: #943bd4;
 }
 
 body.dark .project-card:hover .icon svg path {
-    stroke: #9d22ce;
+    stroke: #cb13df;
 }
 
 body.dark .project-card .desc {
     color: #d8c4f0;
+}
+
+body.dark .project-card .name {
+  color: #eee7f6;
 }
 
 /* --- Navigation + Text --- */
