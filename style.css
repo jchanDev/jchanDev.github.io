@@ -41,7 +41,7 @@ body {
   max-width: 46.875rem; /* 750px */
   max-height: 1000px;
   background: rgba(255, 255, 255, 0.8);
-  border: 0.1875rem solid #D8B4FE; /* 3px */
+  border: 0.1875rem solid #c48dff; /* 3px */
   border-radius: 0.7rem; /* 10px */
   box-shadow: 0 0.625rem 1.875rem rgba(153, 0, 255, 0.1);
   overflow: hidden;
