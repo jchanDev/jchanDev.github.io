@@ -1,27 +1,18 @@
-const terminal = document.querySelector('.terminal');
-const terminalBody = document.querySelector('.terminal-body')
 const toggleBtn = document.getElementById('toggle-theme');
 const body = document.body;
+const terminal = document.querySelector('.terminal');
+const terminalBody = document.querySelector('.terminal-body');
 
 // ===============================
-// Theme Toggle Logic (Dark Mode Default)
+// Theme Toggle Logic
 // ===============================
-if (!localStorage.getItem('theme')) {
-    // No saved theme — default to dark
-    body.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
-} else if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark');
-} else {
-    body.classList.remove('dark');
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark');
 }
 
-// ===============================
-// Toggle Button
-// ===============================
 toggleBtn.addEventListener('click', () => {
-    body.classList.toggle('dark');
-    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  body.classList.toggle('dark');
+  localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
 });
 
 // ===============================
@@ -75,61 +66,46 @@ function showCat(animated = true) {
     if (animated) cat.classList.add('fade-in');
     terminalBody.insertBefore(cat, projects);
 
+    // Cat animation frames
     const catFaces = ["( -.- )", "( O.O )", "( O.O )"];
-    const catText = "Hi! Type ls to view my projects and type clear to see me again!";
 
-    function wrapText(text, maxLen) {
-      const words = text.split(' ');
-      const lines = [];
-      let currentLine = '';
-      words.forEach(word => {
-        if ((currentLine + (currentLine ? ' ' : '') + word).length <= maxLen) {
-          currentLine += (currentLine ? ' ' : '') + word;
-        } else {
-          lines.push(currentLine);
-          currentLine = word;
-        }
-      });
-      if (currentLine) lines.push(currentLine);
-      return lines;
-    }
+    // Predefined bubbles
+    const desktopBubble = [
+      " ________________________________",
+      "| Hi! Type ls to view my projects|",
+      "| and type clear to see me again!|",
+      "V--------------------------------"
+    ];
 
-    function buildFrame(face) {
-      const terminalWidth = terminalBody.clientWidth;
-      // Calculate font size based on terminal width
-      const baseFontSize = 20; // default cat font size in px
-      const minFontSize = 12;  // smallest font size on mobile
-      const maxCharsPerLine = 40;
-      const scale = Math.max(minFontSize, Math.min(baseFontSize, terminalWidth / 30));
-      cat.style.fontSize = scale + 'px';
+    const mobileBubble = [
+      " ______________________",
+      "| Hi! Type ls to view |",
+      "| my projects and     |",
+      "| type clear to see me|",
+      "| again!              |",
+      "V---------------------"
+    ];
 
-      const approxCharWidth = scale * 0.5; // roughly half font size in px
-      const maxChars = Math.max(10, Math.floor((terminalWidth - 40) / approxCharWidth));
-      const wrapped = wrapText(catText, Math.min(maxChars, maxCharsPerLine));
-      const actualLongest = Math.max(...wrapped.map(l => l.length));
-
-      const top = " " + "_".repeat(actualLongest + 2);
-      const bubble = wrapped.map(line => {
-        const padding = actualLongest - line.length;
-        return "| " + line + " ".repeat(padding) + " |";
-      }).join("\n");
-      const bottom = "V" + "-".repeat(actualLongest + 1);
-
-      const catArt = `
- /\\_/\\  
-${face} 
- >   <  
- /   \\
-(     )`;
-
-      return `${top}\n${bubble}\n${bottom}\n${catArt}`;
-    }
+    const useMobile = terminalBody.clientWidth < 480;
+    const bubbleLines = useMobile ? mobileBubble : desktopBubble;
 
     let frameIndex = 0;
 
+    function buildCatFrame(face) {
+      // Add cat art below the bubble
+      const catArt = [
+        " /\\_/\\  ",
+        face + " ",
+        " >   <  ",
+        " /   \\  ",
+        "(     ) "
+      ];
+      return [...bubbleLines, ...catArt].join("\n");
+    }
+
     function updateCat() {
       if (!cat) return;
-      cat.innerText = buildFrame(catFaces[frameIndex]);
+      cat.innerText = buildCatFrame(catFaces[frameIndex]);
       frameIndex = (frameIndex + 1) % catFaces.length;
     }
 
@@ -137,10 +113,6 @@ ${face}
     catInterval = setInterval(updateCat, 800);
 
     terminal.classList.add('compact');
-
-    window.addEventListener('resize', () => {
-      if (cat) updateCat();
-    });
   }
 }
 
