@@ -581,10 +581,6 @@ body.dark .terminal-body {
     color: #eee;
 }
 
-body.dark .typing-line {
-    border-right: 0.125rem solid #cfaeff;
-}
-
 /* --- Project Cards --- */
 body.dark .project-card {
     background: #27252d;
