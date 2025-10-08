@@ -16,7 +16,6 @@ html {
 
 body {
   font-family: 'Fira Code', monospace;
-  background: linear-gradient(135deg, #f3e7ff, #ffe6f7);
   color: #333;
   display: flex;
   justify-content: center;
@@ -24,7 +23,14 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 2rem 0;
-  transition: background 0.5s, color 0.5s;
+  transition: background 0.8s ease, color 0.5s ease;
+
+  /* Light mode: sunrise/sunset gradient */
+  --text-color: #2d1b4e;
+  --accent-color: #7e22ce;
+  background: linear-gradient(180deg, #f3c6d1, #e3c1f4, #ffc888);
+  background-size: 100% 100%;
+  animation: sunriseShift 20s ease-in-out infinite;
 }
 
 /* =========================================================
@@ -403,10 +409,66 @@ body {
 /* =========================================================
    DARK MODE
    ========================================================= */
+/* Dark Mode: night sky with stars */
 body.dark {
-  background: linear-gradient(135deg, #11001d, #3f0e64);
-  color: #eee;
+  --text-color: #ffffff;
+  --accent-color: #c87bff;
+  background: radial-gradient(circle at 30% 20%, #1a1a40, #000);
+  color: var(--text-color);
+  transition: background 1s ease, color 0.3s ease;
+  overflow: hidden;
 }
+
+/* Static twinkle layer */
+body.dark::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(white 2px, transparent 2px),
+    radial-gradient(white 1.5px, transparent 1.5px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 150px 150px, 250px 250px, 400px 400px;
+  background-position: 0 0, 50px 100px, 100px 50px;
+  animation: twinkle 4s infinite ease-in-out alternate;
+  z-index: -1;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Continuous drift layer — stars move endlessly */
+body.dark::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(white 2px, transparent 2px),
+    radial-gradient(white 1.5px, transparent 1.5px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 200px 200px, 300px 300px, 500px 500px;
+  background-position: 0 0, 100px 50px, 50px 150px;
+  animation: starDrift 120s linear infinite;
+  z-index: -2;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Subtle twinkle shimmer */
+@keyframes twinkle {
+  from { opacity: 0.4; transform: scale(1); }
+  to { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Infinite one-direction drift */
+@keyframes starDrift {
+  from {
+    background-position: 0 0, 100px 50px, 50px 150px;
+  }
+  to {
+    background-position: -2000px -2000px, -1900px -2100px, -1800px -1900px;
+  }
+}
+
 
 /* --- Terminal --- */
 body.dark .terminal {
