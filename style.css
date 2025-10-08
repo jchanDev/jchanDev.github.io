@@ -313,8 +313,9 @@ body {
 
 .back {
   display: inline-block;
-  font-size: clamp(0.75rem, 2.5vw, 1rem); /* shrinks on smaller screens */
+  font-size: clamp(0.9rem, 2.5vw, 1rem); /* shrinks on smaller screens */
   font-family: 'Fira Code', monospace;
+  font-weight: bold;
   color: #5c2a8a;
   text-decoration: none;
   margin-bottom: 1rem;
