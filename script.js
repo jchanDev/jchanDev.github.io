@@ -229,3 +229,9 @@ document.addEventListener("DOMContentLoaded", () => {
     el.innerHTML = el.textContent.replaceAll("_", "_\u200B");
   });
 });
+
+document.documentElement.setAttribute('data-loading', '');
+
+window.addEventListener('load', () => {
+    document.documentElement.removeAttribute('data-loading');
+});

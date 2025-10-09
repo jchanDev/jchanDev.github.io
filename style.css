@@ -12,7 +12,13 @@ html {
     box-sizing: border-box;
     transition: background 0.4s ease, color 0.4s ease,
         border-color 0.4s ease, box-shadow 0.4s ease,
-        transform 0.3s ease;
+        transform 0.4s ease;
+    /* transition: none !important; */
+}
+
+
+html[data-loading] * {
+    transition: none !important;
 }
 
 html,
@@ -190,7 +196,8 @@ body {
 
 /* Cat speech bubble/text */
 .cat-speech {
-    font-size: 0.85rem; /* fixed size */
+    font-size: 0.85rem;
+    /* fixed size */
     display: inline-block;
     color: var(--text-color, #5c2a8a);
     max-width: 95%;
@@ -201,9 +208,11 @@ body {
 
 @media (max-width: 480px) {
     .cat-speech {
-        font-size: 0.75rem; /* slightly smaller on small screens */
+        font-size: 0.75rem;
+        /* slightly smaller on small screens */
     }
 }
+
 /* Fade animations */
 .ascii-cat.fade-in {
     opacity: 0;

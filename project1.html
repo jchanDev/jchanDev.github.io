@@ -5,6 +5,48 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>On-Premise to Cloud Transfer: Humans mating habits research Model</title>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('theme');
+            const isDark = theme === 'dark' || !theme; // default to dark if none set
+
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                // Temporary inline style, but *removable*
+                const tempStyle = document.createElement('style');
+                tempStyle.textContent = `
+      body {
+        background: radial-gradient(circle at 30% 20%, #1a1a40, #000) !important;
+        color: #ffffff !important;
+      }
+        .terminal {
+            background: #211031 !important;
+            border-color: #7E22CE !important;
+            box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.4) !important;
+        }
+        .terminal-body {
+            background: #1e1c22;
+            color: #eee;
+        }
+        .panel {
+            background: #27252d;
+            border-color: #7E22CE;
+            color: #f3d9ff;
+        }
+
+        
+    `;
+                tempStyle.id = 'temp-dark-style';
+                document.head.appendChild(tempStyle);
+            }
+
+            // Once the page fully loads, remove the temporary inline style
+            window.addEventListener('DOMContentLoaded', () => {
+                const temp = document.getElementById('temp-dark-style');
+                if (temp) temp.remove();
+            });
+        })();
+    </script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
